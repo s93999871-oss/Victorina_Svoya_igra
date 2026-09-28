@@ -18,7 +18,7 @@
 
 <style>
 /* ============================================================
-   ВИКТОРИНА EOS · СВОЯ ИГРА · DESIGN v7
+   ВИКТОРИНА EOS · СВОЯ ИГРА · DESIGN v8 (ФИНАЛЬНАЯ)
    ============================================================ */
 
 :root {
@@ -108,18 +108,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   opacity: .45;
   pointer-events: none;
 }
-.orb--left {
-  top: 26vh; left: -180px;
-  width: 440px; height: 440px;
-  background: #FFD9DC;
-  animation: orb-drift-a 18s var(--ease) infinite;
-}
-.orb--right {
-  right: -140px; bottom: -140px;
-  width: 380px; height: 380px;
-  background: #FFEFDC;
-  animation: orb-drift-b 22s var(--ease) infinite;
-}
+.orb--left { top: 26vh; left: -180px; width: 440px; height: 440px; background: #FFD9DC; animation: orb-drift-a 18s var(--ease) infinite; }
+.orb--right { right: -140px; bottom: -140px; width: 380px; height: 380px; background: #FFEFDC; animation: orb-drift-b 22s var(--ease) infinite; }
 
 .hero {
   position: relative;
@@ -135,8 +125,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   border: 1px solid rgba(255, 255, 255, .13);
   background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, .09), transparent 62%);
 }
-.hero__ring--lg { right: -90px;  bottom: -170px; width: 380px; height: 380px; }
-.hero__ring--sm { left: -120px;  top: -140px;    width: 300px; height: 300px; opacity: .7; }
+.hero__ring--lg { right: -90px; bottom: -170px; width: 380px; height: 380px; }
+.hero__ring--sm { left: -120px; top: -140px; width: 300px; height: 300px; opacity: .7; }
 
 .hero__wave {
   position: absolute;
@@ -207,433 +197,180 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   background-clip: padding-box, border-box;
 }
 
-.title {
-  margin: 0 0 10px;
-  font-size: 23px;
-  font-weight: 900;
-  letter-spacing: -.01em;
-}
-.subtitle {
-  margin: 0 0 28px;
-  font-size: 13.5px;
-  font-weight: 500;
-  line-height: 1.7;
-  color: var(--ink-muted);
-}
+.title { margin: 0 0 10px; font-size: 23px; font-weight: 900; letter-spacing: -.01em; }
+.subtitle { margin: 0 0 28px; font-size: 13.5px; font-weight: 500; line-height: 1.7; color: var(--ink-muted); }
 
-/* ---------- Кнопка-подсказка (фиксированная) ---------- */
+/* ---------- Кнопка-подсказка ---------- */
 .help-btn {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 100;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: #fff;
-  border: 1.5px solid var(--line);
-  box-shadow: var(--shadow);
-  font-size: 20px;
-  font-weight: 900;
-  color: var(--red-600);
-  cursor: pointer;
-  transition: all .3s var(--ease);
-  display: grid;
-  place-items: center;
+  position: fixed; top: 20px; right: 20px; z-index: 100;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: #fff; border: 1.5px solid var(--line);
+  box-shadow: var(--shadow); font-size: 20px; font-weight: 900;
+  color: var(--red-600); cursor: pointer;
+  transition: all .3s var(--ease); display: grid; place-items: center;
 }
-.help-btn:hover {
-  transform: scale(1.1);
-  box-shadow: var(--shadow-lift);
-  border-color: var(--red-400);
-  background: var(--red-soft);
-}
+.help-btn:hover { transform: scale(1.1); box-shadow: var(--shadow-lift); border-color: var(--red-400); background: var(--red-soft); }
 
 /* ---------- Модальное окно ---------- */
 .modal-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 200;
-  background: rgba(0, 0, 0, .5);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(0, 0, 0, .5); display: none;
+  align-items: center; justify-content: center; padding: 20px;
   animation: fadeIn .3s var(--ease);
 }
-.modal-overlay.is-open {
-  display: flex;
-}
+.modal-overlay.is-open { display: flex; }
 .modal {
-  max-width: 480px;
-  width: 100%;
-  max-height: 80vh;
-  overflow-y: auto;
-  background: #fff;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-lift);
-  padding: 32px;
-  animation: modalIn .4s var(--ease);
+  max-width: 480px; width: 100%; max-height: 80vh; overflow-y: auto;
+  background: #fff; border-radius: var(--radius);
+  box-shadow: var(--shadow-lift); padding: 32px; animation: modalIn .4s var(--ease);
 }
-.modal__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 24px;
-}
-.modal__title {
-  font-family: var(--font-display);
-  font-size: 20px;
-  font-weight: 700;
-  margin: 0;
-}
+.modal__header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+.modal__title { font-family: var(--font-display); font-size: 20px; font-weight: 700; margin: 0; }
 .modal__close {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--ink-muted);
-  cursor: pointer;
-  transition: all .3s var(--ease);
-  display: grid;
-  place-items: center;
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--surface); border: 1px solid var(--line);
+  font-size: 16px; font-weight: 700; color: var(--ink-muted);
+  cursor: pointer; transition: all .3s var(--ease); display: grid; place-items: center;
 }
-.modal__close:hover {
-  background: var(--red-soft);
-  color: var(--red-600);
-  border-color: var(--red-400);
-}
-.modal__section {
-  margin-bottom: 20px;
-}
-.modal__section:last-child {
-  margin-bottom: 0;
-}
-.modal__section-title {
-  font-size: 14px;
-  font-weight: 800;
-  color: var(--red-600);
-  margin-bottom: 6px;
-  letter-spacing: .02em;
-}
-.modal__section-text {
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 1.65;
-  color: var(--ink-soft);
-}
+.modal__close:hover { background: var(--red-soft); color: var(--red-600); border-color: var(--red-400); }
+.modal__section { margin-bottom: 20px; }
+.modal__section:last-child { margin-bottom: 0; }
+.modal__section-title { font-size: 14px; font-weight: 800; color: var(--red-600); margin-bottom: 6px; letter-spacing: .02em; }
+.modal__section-text { font-size: 13px; font-weight: 500; line-height: 1.65; color: var(--ink-soft); }
 
 /* ---------- Навигация ---------- */
 .nav-tabs {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 20px;
-  background: #fff;
-  border-radius: 999px;
-  padding: 6px;
-  box-shadow: var(--shadow);
+  display: flex; gap: 8px; margin-bottom: 20px;
+  background: #fff; border-radius: 999px; padding: 6px; box-shadow: var(--shadow);
 }
 .nav-tab {
-  flex: 1;
-  padding: 12px 16px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  transition: all .3s var(--ease);
-  text-align: center;
+  flex: 1; padding: 12px 16px; border-radius: 999px;
+  font-size: 12px; font-weight: 800; letter-spacing: .06em;
+  text-transform: uppercase; color: var(--ink-soft);
+  transition: all .3s var(--ease); text-align: center;
 }
-.nav-tab:hover {
-  background: var(--red-soft);
-  color: var(--red-600);
-}
-.nav-tab.is-active {
-  background: var(--gradient-red);
-  color: #fff;
-  box-shadow: var(--shadow-red);
-}
+.nav-tab:hover { background: var(--red-soft); color: var(--red-600); }
+.nav-tab.is-active { background: var(--gradient-red); color: #fff; box-shadow: var(--shadow-red); }
 
 /* ---------- Вкладки месяцев ---------- */
-.months-tabs {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 20px;
-}
+.months-tabs { display: flex; gap: 12px; margin-bottom: 20px; }
 .month-tab {
-  flex: 1;
-  position: relative;
-  padding: 16px;
-  border-radius: 18px;
-  background: #fff;
-  border: 1.5px solid var(--line);
-  text-align: center;
-  transition: all .3s var(--ease);
-  cursor: pointer;
+  flex: 1; position: relative; padding: 16px; border-radius: 18px;
+  background: #fff; border: 1.5px solid var(--line);
+  text-align: center; transition: all .3s var(--ease); cursor: pointer;
 }
-.month-tab:hover:not(.is-locked) {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-lift);
-  border-color: var(--red-400);
-}
-.month-tab.is-active {
-  background: var(--gradient-red);
-  color: #fff;
-  border-color: transparent;
-  box-shadow: var(--shadow-red);
-}
-.month-tab.is-locked {
-  opacity: .6;
-  cursor: not-allowed;
-}
-.month-tab__name {
-  font-family: var(--font-display);
-  font-size: 16px;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-.month-tab__year {
-  font-size: 11px;
-  font-weight: 600;
-  opacity: .7;
-  margin-top: 4px;
-}
+.month-tab:hover:not(.is-locked) { transform: translateY(-3px); box-shadow: var(--shadow-lift); border-color: var(--red-400); }
+.month-tab.is-active { background: var(--gradient-red); color: #fff; border-color: transparent; box-shadow: var(--shadow-red); }
+.month-tab.is-locked { opacity: .6; cursor: not-allowed; }
+.month-tab__name { font-family: var(--font-display); font-size: 16px; font-weight: 700; text-transform: uppercase; }
+.month-tab__year { font-size: 11px; font-weight: 600; opacity: .7; margin-top: 4px; }
 .month-tab__status {
-  display: inline-block;
-  margin-top: 8px;
-  padding: 3px 10px;
-  border-radius: 999px;
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: .1em;
-  text-transform: uppercase;
+  display: inline-block; margin-top: 8px; padding: 3px 10px;
+  border-radius: 999px; font-size: 9px; font-weight: 800;
+  letter-spacing: .1em; text-transform: uppercase;
 }
-.month-tab.is-active .month-tab__status {
-  background: rgba(255, 255, 255, .2);
-  color: #fff;
-}
-.month-tab.is-locked .month-tab__status {
-  background: #EDEDF2;
-  color: var(--ink-muted);
-}
+.month-tab.is-active .month-tab__status { background: rgba(255, 255, 255, .2); color: #fff; }
+.month-tab.is-locked .month-tab__status { background: #EDEDF2; color: var(--ink-muted); }
 
 .month-tab__tooltip {
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
+  position: absolute; bottom: 100%; left: 50%;
   transform: translateX(-50%) translateY(10px);
-  padding: 10px 16px;
-  background: var(--ink);
-  color: #fff;
-  font-size: 11px;
-  font-weight: 600;
-  border-radius: 10px;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: all .3s var(--ease);
-  z-index: 10;
+  padding: 10px 16px; background: var(--ink); color: #fff;
+  font-size: 11px; font-weight: 600; border-radius: 10px;
+  white-space: nowrap; opacity: 0; pointer-events: none;
+  transition: all .3s var(--ease); z-index: 10;
 }
 .month-tab__tooltip::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  border: 6px solid transparent;
-  border-top-color: var(--ink);
+  content: ''; position: absolute; top: 100%; left: 50%;
+  transform: translateX(-50%); border: 6px solid transparent; border-top-color: var(--ink);
 }
-.month-tab.is-locked:hover .month-tab__tooltip {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
+.month-tab.is-locked:hover .month-tab__tooltip { opacity: 1; transform: translateX(-50%) translateY(0); }
 
 /* ---------- Старт ---------- */
 .rules { margin: 0 0 30px; padding: 0; list-style: none; }
-.rules__item {
-  display: flex;
-  gap: 16px;
-  align-items: baseline;
-  padding: 16px 0;
-  border-bottom: 1px solid var(--line);
-}
+.rules__item { display: flex; gap: 16px; align-items: baseline; padding: 16px 0; border-bottom: 1px solid var(--line); }
 .rules__item:first-child { padding-top: 0; }
 .rules__item:last-child  { border: none; padding-bottom: 0; }
 .rules__label {
-  min-width: 84px;
-  font-size: 10.5px;
-  font-weight: 800;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--red-600);
+  min-width: 84px; font-size: 10.5px; font-weight: 800;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--red-600);
 }
 .rules__text { font-size: 13.5px; font-weight: 500; line-height: 1.6; color: var(--ink-soft); }
 
-/* NEW: Autocomplete wrapper */
-.autocomplete-wrapper {
-  position: relative;
-  margin-bottom: 8px;
-}
+.autocomplete-wrapper { position: relative; margin-bottom: 8px; }
 .field {
-  width: 100%;
-  padding: 17px 22px;
-  font: 500 14.5px var(--font-body);
-  color: var(--ink);
-  background: #FAFAFC;
-  border: 1.5px solid var(--line);
-  border-radius: 999px;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, .03);
-  outline: none;
-  transition: border-color .3s var(--ease), box-shadow .3s var(--ease), background .3s var(--ease);
+  width: 100%; padding: 17px 22px; font: 500 14.5px var(--font-body);
+  color: var(--ink); background: #FAFAFC; border: 1.5px solid var(--line);
+  border-radius: 999px; box-shadow: inset 0 1px 3px rgba(0, 0, 0, .03);
+  outline: none; transition: border-color .3s var(--ease), box-shadow .3s var(--ease), background .3s var(--ease);
 }
-.field:focus {
-  background: #fff;
-  border-color: var(--red-400);
-  box-shadow: 0 0 0 4px rgba(224, 27, 36, .10);
-}
-.field--invalid {
-  border-color: var(--red-500);
-  box-shadow: 0 0 0 4px rgba(224, 27, 36, .10);
-  animation: shake .5s var(--ease);
-}
-.field-error {
-  display: none;
-  margin: 10px 4px 0;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--red-500);
-}
+.field:focus { background: #fff; border-color: var(--red-400); box-shadow: 0 0 0 4px rgba(224, 27, 36, .10); }
+.field--invalid { border-color: var(--red-500); box-shadow: 0 0 0 4px rgba(224, 27, 36, .10); animation: shake .5s var(--ease); }
+.field-error { display: none; margin: 10px 4px 0; font-size: 12px; font-weight: 600; color: var(--red-500); }
 .field-error.is-visible { display: block; }
-.field-hint {
-  margin: 8px 4px 0;
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--ink-muted);
-}
+.field-hint { margin: 8px 4px 0; font-size: 11px; font-weight: 500; color: var(--ink-muted); }
 
-/* NEW: Autocomplete dropdown */
 .autocomplete-list {
-  position: absolute;
-  top: calc(100% + 6px);
-  left: 0;
-  right: 0;
-  background: #fff;
-  border: 1.5px solid var(--line);
-  border-radius: 16px;
-  box-shadow: var(--shadow-lift);
-  list-style: none;
-  margin: 0;
-  padding: 6px;
-  z-index: 50;
-  max-height: 220px;
-  overflow-y: auto;
-  display: none;
+  position: absolute; top: calc(100% + 6px); left: 0; right: 0;
+  background: #fff; border: 1.5px solid var(--line); border-radius: 16px;
+  box-shadow: var(--shadow-lift); list-style: none; margin: 0; padding: 6px;
+  z-index: 50; max-height: 220px; overflow-y: auto; display: none;
 }
 .autocomplete-list.is-visible { display: block; }
 .autocomplete-item {
-  padding: 10px 16px;
-  border-radius: 10px;
-  font-size: 13.5px;
-  font-weight: 600;
-  color: var(--ink);
-  cursor: pointer;
-  transition: background .2s var(--ease);
+  padding: 10px 16px; border-radius: 10px; font-size: 13.5px;
+  font-weight: 600; color: var(--ink); cursor: pointer; transition: background .2s var(--ease);
 }
-.autocomplete-item:hover {
-  background: var(--red-soft);
-  color: var(--red-600);
-}
+.autocomplete-item:hover { background: var(--red-soft); color: var(--red-600); }
 
 .actions { display: flex; flex-direction: column; gap: 14px; margin-top: 22px; }
 .actions--flush { margin-top: 0; }
 
 .btn {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  padding: 18px;
-  border-radius: 999px;
-  background: var(--gradient-red);
-  color: #fff;
-  font-size: 14px;
-  font-weight: 800;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  box-shadow: var(--shadow-red);
+  position: relative; overflow: hidden; width: 100%; padding: 18px;
+  border-radius: 999px; background: var(--gradient-red); color: #fff;
+  font-size: 14px; font-weight: 800; letter-spacing: .06em;
+  text-transform: uppercase; box-shadow: var(--shadow-red);
   transition: transform .35s var(--ease), box-shadow .35s var(--ease), background .35s var(--ease);
 }
 .btn::after {
-  content: '';
-  position: absolute;
-  top: 0; left: -80%;
-  width: 50%; height: 100%;
-  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .35), transparent);
-  transform: skewX(-20deg);
-  transition: left .6s var(--ease);
+  content: ''; position: absolute; top: 0; left: -80%;
+  width: 50%; height: 100%; background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .35), transparent);
+  transform: skewX(-20deg); transition: left .6s var(--ease);
 }
 .btn:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(208, 26, 34, .34); }
 .btn:hover::after { left: 130%; }
 .btn:active { transform: translateY(-1px) scale(.985); }
 
 .btn--ghost {
-  background: #fff;
-  color: var(--red-600);
-  border: 1.5px solid #FFD3D6;
-  box-shadow: var(--shadow);
+  background: #fff; color: var(--red-600); border: 1.5px solid #FFD3D6; box-shadow: var(--shadow);
 }
 .btn--ghost::after { background: linear-gradient(100deg, transparent, rgba(224, 27, 36, .08), transparent); }
 .btn--ghost:hover { background: var(--red-soft); box-shadow: 0 14px 30px rgba(208, 26, 34, .13); }
 
-/* NEW: Network Error Block */
-.network-error {
-  text-align: center;
-  padding: 30px 20px;
-  background: var(--red-soft);
-  border: 1.5px solid var(--red-400);
-  border-radius: 18px;
-  margin-bottom: 20px;
-  display: none;
+/* ---------- Блоки состояний ---------- */
+.network-error, .already-completed {
+  text-align: center; padding: 30px 20px; border-radius: 18px; margin-bottom: 20px; display: none;
 }
-.network-error.is-visible { display: block; }
-.network-error__title { font-size: 15px; font-weight: 800; color: var(--red-600); margin-bottom: 8px; }
-.network-error__text { font-size: 13px; color: var(--ink-soft); margin-bottom: 16px; line-height: 1.5; }
-
-/* NEW: Already Completed Block */
-.already-completed {
-  text-align: center;
-  padding: 30px 20px;
-  background: var(--success-soft);
-  border: 1.5px solid var(--success);
-  border-radius: 18px;
-  margin-bottom: 20px;
-  display: none;
-}
-.already-completed.is-visible { display: block; }
-.already-completed__title { font-size: 15px; font-weight: 800; color: var(--success); margin-bottom: 8px; }
-.already-completed__text { font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+.network-error { background: var(--red-soft); border: 1.5px solid var(--red-400); }
+.already-completed { background: var(--success-soft); border: 1.5px solid var(--success); }
+.network-error.is-visible, .already-completed.is-visible { display: block; }
+.network-error__title, .already-completed__title { font-size: 15px; font-weight: 800; margin-bottom: 8px; }
+.network-error__title { color: var(--red-600); }
+.already-completed__title { color: var(--success); }
+.network-error__text, .already-completed__text { font-size: 13px; color: var(--ink-soft); line-height: 1.5; margin-bottom: 16px; }
 
 /* ---------- Вопрос ---------- */
 .quiz-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 22px 26px;
-  background: var(--gradient-hero);
-  color: #fff;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 22px 26px; background: var(--gradient-hero); color: #fff;
 }
 .quiz-bar__counter { opacity: .85; }
 
 .timer {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 80px; height: 80px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, .12);
-  border: 1px solid rgba(255, 255, 255, .2);
+  position: relative; display: grid; place-items: center;
+  width: 80px; height: 80px; border-radius: 50%;
+  background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .2);
   transition: background .3s var(--ease), box-shadow .3s var(--ease);
 }
 .timer__ring { position: absolute; inset: 4px; transform: rotate(-90deg); }
@@ -645,9 +382,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .timer__label { margin-top: 3px; font-size: 8px; font-weight: 700; letter-spacing: .16em; opacity: .75; text-transform: uppercase; }
 
 .timer--warn {
-  background: #fff;
-  box-shadow: 0 10px 26px rgba(224, 27, 36, .35);
-  animation: pulse 1s infinite;
+  background: #fff; box-shadow: 0 10px 26px rgba(224, 27, 36, .35); animation: pulse 1s infinite;
 }
 .timer--warn .timer__ring-bg   { stroke: #F4CDD0; }
 .timer--warn .timer__ring-fill { stroke: var(--red-500); }
@@ -655,113 +390,46 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .timer--warn .timer__label     { color: var(--red-600); opacity: .8; }
 
 .quiz-body { position: relative; padding: 34px 30px 36px; }
-.question {
-  margin: 0;
-  font-size: clamp(18px, 3.4vw, 23px);
-  font-weight: 800;
-  line-height: 1.45;
-}
+.question { margin: 0; font-size: clamp(18px, 3.4vw, 23px); font-weight: 800; line-height: 1.45; }
 
-.options {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-top: 30px;
-}
+.options { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 30px; }
 .option {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  min-height: 118px;
-  padding: 22px 20px;
-  text-align: left;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 1.5;
-  color: var(--ink);
-  background: #fff;
-  border: 1.5px solid var(--line);
-  border-radius: 18px;
+  position: relative; display: flex; flex-direction: column; gap: 14px;
+  min-height: 118px; padding: 22px 20px; text-align: left;
+  font-size: 14px; font-weight: 600; line-height: 1.5; color: var(--ink);
+  background: #fff; border: 1.5px solid var(--line); border-radius: 18px;
   box-shadow: var(--shadow);
-  transition: transform .32s var(--ease), background .32s var(--ease),
-              border-color .32s var(--ease), box-shadow .32s var(--ease), opacity .32s var(--ease);
+  transition: transform .32s var(--ease), background .32s var(--ease), border-color .32s var(--ease), box-shadow .32s var(--ease), opacity .32s var(--ease);
 }
-.option:hover:not(:disabled) {
-  transform: translateY(-5px);
-  background: var(--red-soft);
-  border-color: #FFCACE;
-  box-shadow: var(--shadow-lift);
-}
+.option:hover:not(:disabled) { transform: translateY(-5px); background: var(--red-soft); border-color: #FFCACE; box-shadow: var(--shadow-lift); }
 .option:active:not(:disabled) { transform: translateY(-2px) scale(.98); }
 .option:disabled { cursor: default; }
 
 .option__key {
-  flex: none;
-  display: grid;
-  place-items: center;
-  width: 28px; height: 28px;
-  border-radius: 50%;
-  background: var(--red-soft);
-  color: var(--red-600);
-  font-size: 12px;
-  font-weight: 900;
-  transition: background .3s var(--ease), color .3s var(--ease);
+  flex: none; display: grid; place-items: center;
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--red-soft); color: var(--red-600);
+  font-size: 12px; font-weight: 900; transition: background .3s var(--ease), color .3s var(--ease);
 }
 .option__text { padding-right: 30px; }
 
-/* UPDATE: Removed correct/wrong specific icon styles, keeping only selected/dim */
 .option--selected { background: var(--red-soft); border-color: var(--red-400); box-shadow: var(--shadow-lift); }
 .option--selected .option__key { background: var(--red-500); color: #fff; }
-.option--dim { opacity: .4; }
+.option--dim { opacity: .35; }
 
-/* NEW: Confirm Answer Button Area */
-.quiz-actions {
-  margin-top: 28px;
-  display: none;
-  animation: rise .4s var(--ease) both;
-}
+.quiz-actions { margin-top: 28px; display: none; animation: rise .4s var(--ease) both; }
 .quiz-actions.is-visible { display: block; }
 
-.quiz-hint {
-  margin: 22px 0 0;
-  text-align: center;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: .04em;
-  color: var(--ink-muted);
-}
+.quiz-hint { margin: 22px 0 0; text-align: center; font-size: 11px; font-weight: 600; letter-spacing: .04em; color: var(--ink-muted); }
 
-.toast {
-  position: absolute;
-  top: 12px; left: 50%;
-  transform: translate(-50%, -14px);
-  z-index: 5;
-  padding: 10px 22px;
-  border-radius: 999px;
-  white-space: nowrap;
-  color: #fff;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: .06em;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .35s var(--ease), transform .35s var(--ease);
-}
-.toast.is-visible { opacity: 1; transform: translate(-50%, 0); }
-.toast--ok   { background: var(--success);  box-shadow: 0 10px 24px rgba(30, 158, 90, .35); }
-.toast--warn { background: var(--ink);      box-shadow: 0 10px 24px rgba(0, 0, 0, .25); }
-
+/* Нейтральный прогресс-бар */
 .progress { display: flex; gap: 6px; margin-top: 24px; }
 .progress__seg {
-  flex: 1;
-  height: 6px;
-  border-radius: 99px;
-  background: #DFDFE7;
-  transition: background .4s var(--ease);
+  flex: 1; height: 6px; border-radius: 99px;
+  background: #DFDFE7; transition: background .4s var(--ease);
 }
-.progress__seg--ok      { background: var(--success); }
-.progress__seg--fail    { background: var(--red-500); }
+/* NEW: Нейтральный цвет для пройденных вопросов */
+.progress__seg--passed { background: var(--ink-muted); opacity: 0.4; }
 .progress__seg--current {
   background: linear-gradient(90deg, var(--red-400), var(--red-600));
   animation: seg-pulse 1.6s infinite;
@@ -769,21 +437,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 /* ---------- Результат ---------- */
 .result {
-  padding: 42px 34px;
-  color: #fff;
-  background: var(--gradient-red);
-  border-radius: var(--radius);
+  padding: 42px 34px; color: #fff;
+  background: var(--gradient-red); border-radius: var(--radius);
   box-shadow: var(--shadow-red);
 }
 .result__caption { text-align: center; opacity: .8; }
 
 .result__grid {
-  display: grid;
-  grid-template-columns: 150px 1fr;
-  gap: 30px;
-  align-items: center;
-  margin-top: 28px;
-  text-align: left;
+  display: grid; grid-template-columns: 150px 1fr;
+  gap: 30px; align-items: center; margin-top: 28px; text-align: left;
 }
 
 .acc { position: relative; width: 150px; height: 150px; }
@@ -791,110 +453,60 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .acc circle { fill: none; stroke-width: 9; stroke-linecap: round; }
 .acc__bg   { stroke: rgba(255, 255, 255, .18); }
 .acc__fill { stroke: #fff; }
-.acc__center {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-content: center;
-  text-align: center;
-}
+.acc__center { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; }
 .acc__num { font-family: var(--font-display); font-size: 30px; font-weight: 900; }
 .acc__label { margin-top: 5px; font-size: 9px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; opacity: .8; }
 
-.result__grade {
-  font-family: var(--font-display);
-  font-size: clamp(20px, 3.6vw, 27px);
-  font-weight: 700;
-  line-height: 1.25;
-}
+.result__grade { font-family: var(--font-display); font-size: clamp(20px, 3.6vw, 27px); font-weight: 700; line-height: 1.25; }
 .result__note { margin-top: 10px; font-size: 13px; font-weight: 500; line-height: 1.65; opacity: .88; }
 .result__name { margin-top: 14px; color: var(--gold); font-size: 14px; font-weight: 700; letter-spacing: .02em; }
 
-.stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  margin-top: 28px;
+/* NEW: Сообщение про МТС Линк */
+.result__mts-note {
+  margin-top: 28px; padding: 16px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 14px;
+  font-size: 13px; font-weight: 600; line-height: 1.5;
+  text-align: center; color: #fff;
 }
+
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 28px; }
 .stat {
-  padding: 18px 8px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, .13);
-  border: 1px solid rgba(255, 255, 255, .18);
+  padding: 18px 8px; border-radius: 16px;
+  background: rgba(255, 255, 255, .13); border: 1px solid rgba(255, 255, 255, .18);
   text-align: center;
 }
 .stat__value { font-family: var(--font-display); font-size: 20px; font-weight: 700; }
 .stat__sep { opacity: .55; font-size: 15px; }
-.stat__label {
-  margin-top: 6px;
-  font-size: 8.5px;
-  font-weight: 700;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  opacity: .82;
-}
+.stat__label { margin-top: 6px; font-size: 8.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; opacity: .82; }
 
-/* ---------- Пьедестал ---------- */
-.podium {
-  display: flex;
-  gap: 14px;
-  align-items: flex-end;
-  margin-top: 42px;
-}
-.podium__col {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+/* ---------- Пьедестал и Таблица ---------- */
+.podium { display: flex; gap: 14px; align-items: flex-end; margin-top: 42px; }
+.podium__col { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; }
 .podium__card {
-  position: relative;
-  width: 100%;
-  padding: 20px 10px 16px;
-  text-align: center;
-  background: #fff;
-  border: 1.5px solid var(--line);
-  border-radius: 18px;
-  box-shadow: var(--shadow);
-  animation: rise .6s var(--ease) both;
+  position: relative; width: 100%; padding: 20px 10px 16px; text-align: center;
+  background: #fff; border: 1.5px solid var(--line); border-radius: 18px;
+  box-shadow: var(--shadow); animation: rise .6s var(--ease) both;
   transition: transform .35s var(--ease), box-shadow .35s var(--ease);
 }
 .podium__card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
-.podium__col--1 .podium__card {
-  border-color: #EAD9BC;
-  background: linear-gradient(#FFFDF8, #fff);
-  animation-delay: .12s;
-}
+.podium__col--1 .podium__card { border-color: #EAD9BC; background: linear-gradient(#FFFDF8, #fff); animation-delay: .12s; }
 .podium__col--3 .podium__card { animation-delay: .24s; }
 
 .podium__medal {
-  position: absolute;
-  top: -13px; left: 50%;
-  transform: translateX(-50%);
-  width: 26px; height: 26px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-size: 11px;
-  font-weight: 900;
-  color: #5C430F;
-  background: linear-gradient(135deg, #FFE9B8, #E8BC66);
-  box-shadow: 0 4px 10px rgba(190, 150, 60, .4);
+  position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+  width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center;
+  font-size: 11px; font-weight: 900; color: #5C430F;
+  background: linear-gradient(135deg, #FFE9B8, #E8BC66); box-shadow: 0 4px 10px rgba(190, 150, 60, .4);
 }
 .podium__medal--2 { background: linear-gradient(135deg, #F2F3F6, #C3C7D1); color: #555A66; box-shadow: 0 4px 10px rgba(140, 145, 160, .35); }
 .podium__medal--3 { background: linear-gradient(135deg, #F3D3B3, #D89A62); color: #6B4318; box-shadow: 0 4px 10px rgba(190, 130, 80, .35); }
 
 .podium__ava {
-  width: 46px; height: 46px;
-  margin: 8px auto 9px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-size: 14px;
-  font-weight: 900;
-  color: #fff;
-  background: var(--gradient-red);
+  width: 46px; height: 46px; margin: 8px auto 9px; border-radius: 50%;
+  display: grid; place-items: center; font-size: 14px; font-weight: 900;
+  color: #fff; background: var(--gradient-red);
 }
 .podium__col--2 .podium__ava { background: linear-gradient(135deg, #9BA0AE, #C9CDD6); }
 .podium__col--3 .podium__ava { background: linear-gradient(135deg, #C98A57, #E6B98C); }
@@ -903,16 +515,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .podium__meta { margin-top: 6px; font-size: 10.5px; font-weight: 600; color: var(--ink-muted); }
 .podium__meta b { color: var(--ink); font-size: 12px; }
 .podium__tag {
-  display: inline-block;
-  margin-top: 8px;
-  padding: 3px 9px;
-  border-radius: 999px;
-  background: var(--red-500);
-  color: #fff;
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: .1em;
-  text-transform: uppercase;
+  display: inline-block; margin-top: 8px; padding: 3px 9px;
+  border-radius: 999px; background: var(--red-500); color: #fff;
+  font-size: 9px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
 }
 
 .podium__bar { width: 78%; margin-top: 10px; border-radius: 10px 10px 0 0; }
@@ -920,85 +525,41 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .podium__col--2 .podium__bar { height: 70px;  background: linear-gradient(180deg, #C9CDD6, #EDEFF3); }
 .podium__col--3 .podium__bar { height: 48px;  background: linear-gradient(180deg, #E0A874, #F3DCC8); }
 
-/* ---------- Таблица ---------- */
 .board { margin-top: 30px; }
 .board__row {
-  display: grid;
-  grid-template-columns: 46px 1fr 64px 64px;
-  gap: 12px;
-  align-items: center;
-  padding: 16px 14px;
-  border-bottom: 1px solid var(--line);
-  border-radius: 12px;
-  font-size: 13.5px;
-  font-weight: 600;
+  display: grid; grid-template-columns: 46px 1fr 64px 64px; gap: 12px;
+  align-items: center; padding: 16px 14px; border-bottom: 1px solid var(--line);
+  border-radius: 12px; font-size: 13.5px; font-weight: 600;
 }
 .board__row--head {
-  padding: 12px 14px;
-  border-bottom: 1.5px solid var(--line);
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--red-600);
+  padding: 12px 14px; border-bottom: 1.5px solid var(--line);
+  font-size: 10px; font-weight: 800; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--red-600);
 }
 .board__place { font-weight: 900; color: var(--ink-muted); text-align: center; }
 .board__num   { font-weight: 700; color: var(--ink-soft); text-align: center; }
 .board__row--mine { background: var(--red-soft); box-shadow: inset 3px 0 0 var(--red-500); }
 .board__tag {
-  display: inline-block;
-  margin-left: 8px;
-  padding: 3px 9px;
-  border-radius: 999px;
-  background: var(--red-500);
-  color: #fff;
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: .1em;
-  text-transform: uppercase;
+  display: inline-block; margin-left: 8px; padding: 3px 9px;
+  border-radius: 999px; background: var(--red-500); color: #fff;
+  font-size: 9px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
 }
 
 /* ---------- Архив ---------- */
-.archive-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 12px;
-  margin-top: 20px;
-}
+.archive-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; margin-top: 20px; }
 .archive-month {
-  padding: 20px;
-  text-align: center;
-  background: #fff;
-  border: 1.5px solid var(--line);
-  border-radius: 18px;
-  cursor: pointer;
-  transition: all .3s var(--ease);
+  padding: 20px; text-align: center; background: #fff;
+  border: 1.5px solid var(--line); border-radius: 18px;
+  cursor: pointer; transition: all .3s var(--ease);
 }
-.archive-month:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lift);
-  border-color: var(--red-400);
-}
-.archive-month__name {
-  font-family: var(--font-display);
-  font-size: 16px;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-.archive-month__year {
-  font-size: 11px;
-  color: var(--ink-muted);
-  margin-top: 4px;
-}
+.archive-month:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); border-color: var(--red-400); }
+.archive-month__name { font-family: var(--font-display); font-size: 16px; font-weight: 700; text-transform: uppercase; }
+.archive-month__year { font-size: 11px; color: var(--ink-muted); margin-top: 4px; }
 
 /* ---------- Конфетти ---------- */
 .confetti {
-  position: fixed;
-  top: -20px;
-  z-index: 99;
-  width: 9px; height: 9px;
-  pointer-events: none;
-  animation: confetti-fall 3s linear forwards;
+  position: fixed; top: -20px; z-index: 99; width: 9px; height: 9px;
+  pointer-events: none; animation: confetti-fall 3s linear forwards;
 }
 
 /* ---------- Анимации ---------- */
@@ -1009,15 +570,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 @keyframes orb-drift-b { 50% { transform: translate(-50px, 40px); } }
 @keyframes confetti-fall { to { transform: translateY(105vh) rotate(680deg); opacity: 0; } }
 @keyframes shake {
-  20% { transform: translateX(-7px); }
-  40% { transform: translateX(6px); }
-  60% { transform: translateX(-4px); }
-  80% { transform: translateX(3px); }
-}
-@keyframes pop {
-  0%   { transform: scale(1); }
-  45%  { transform: scale(1.03); }
-  100% { transform: scale(1); }
+  20% { transform: translateX(-7px); } 40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); } 80% { transform: translateX(3px); }
 }
 @keyframes fadeIn { from { opacity: 0; } }
 @keyframes modalIn { from { opacity: 0; transform: translateY(20px); } }
@@ -1029,35 +583,17 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .quiz-body { padding: 26px 22px 28px; }
   .quiz-bar { padding: 18px 20px; }
   .result { padding: 32px 22px; }
-
-  .help-btn {
-    top: 12px;
-    right: 12px;
-    width: 40px;
-    height: 40px;
-    font-size: 18px;
-  }
-
+  .help-btn { top: 12px; right: 12px; width: 40px; height: 40px; font-size: 18px; }
   .nav-tabs { gap: 4px; padding: 4px; }
   .nav-tab { padding: 10px 8px; font-size: 9px; }
-
   .months-tabs { gap: 8px; }
   .month-tab { padding: 12px; }
   .month-tab__name { font-size: 14px; }
-
   .options { grid-template-columns: 1fr; gap: 12px; }
-  .option {
-    flex-direction: row;
-    align-items: center;
-    gap: 14px;
-    min-height: auto;
-    padding: 18px;
-  }
+  .option { flex-direction: row; align-items: center; gap: 14px; min-height: auto; padding: 18px; }
   .option__text { padding-right: 36px; }
-
   .result__grid { grid-template-columns: 1fr; justify-items: center; gap: 22px; text-align: center; }
   .result__grade { font-size: 19px; }
-
   .podium { gap: 8px; margin-top: 36px; }
   .podium__ava { width: 38px; height: 38px; font-size: 12px; }
   .podium__name { font-size: 10.5px; }
@@ -1065,19 +601,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .podium__col--1 .podium__bar { height: 72px; }
   .podium__col--2 .podium__bar { height: 48px; }
   .podium__col--3 .podium__bar { height: 32px; }
-
-  .board__row {
-    grid-template-columns: 36px 1fr 44px 52px;
-    padding: 14px 10px;
-    font-size: 12.5px;
-  }
+  .board__row { grid-template-columns: 36px 1fr 44px 52px; padding: 14px 10px; font-size: 12.5px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
-    animation-duration: .01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: .01ms !important;
+    animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important;
   }
 }
 </style>
@@ -1087,10 +616,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 <div class="orb orb--left"></div>
 <div class="orb orb--right"></div>
 
-<!-- Кнопка-подсказка (фиксированная) -->
 <button class="help-btn" id="help-btn" aria-label="Помощь">?</button>
 
-<!-- Модальное окно -->
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal">
     <div class="modal__header">
@@ -1099,15 +626,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     </div>
     <div class="modal__section">
       <div class="modal__section-title">Викторина месяца</div>
-      <div class="modal__section-text">Здесь ты проходишь викторину текущего месяца. Выбери свой никнейм из списка, ответь на вопросы и заработай очки в общий рейтинг. Засчитывается только первое прохождение.</div>
+      <div class="modal__section-text">Выберите свой никнейм из списка, ответьте на вопросы и заработайте очки. Засчитывается только первое прохождение.</div>
     </div>
     <div class="modal__section">
       <div class="modal__section-title">Общий рейтинг</div>
-      <div class="modal__section-text">Сумма твоих очков за все месяцы. Чем больше участвуешь, тем выше поднимаешься.</div>
+      <div class="modal__section-text">Сумма очков за все месяцы. При равных очках выше тот, кто затратил меньше времени.</div>
     </div>
     <div class="modal__section">
       <div class="modal__section-title">Архив</div>
-      <div class="modal__section-text">Здесь хранятся рейтинги прошедших викторин. Загляни, чтобы вспомнить, кто был лучшим в прошлые месяцы.</div>
+      <div class="modal__section-text">Рейтинги прошедших викторин.</div>
     </div>
   </div>
 </div>
@@ -1115,65 +642,50 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 <header class="hero">
   <div class="hero__ring hero__ring--lg"></div>
   <div class="hero__ring hero__ring--sm"></div>
-
   <div class="hero__badge"><span class="caps">Своя игра EOS · 2026</span></div>
   <h1 class="hero__title">ВИКТОРИНА <span class="hero__title-accent">EOS</span></h1>
   <p class="hero__tagline">Отвечай на вопросы месяца и зарабатывай очки в общий рейтинг</p>
-
   <div class="hero__wave"></div>
 </header>
 
 <main class="page">
-
-  <!-- ===================== НАВИГАЦИЯ ===================== -->
   <div class="nav-tabs lift" id="nav-tabs">
     <button class="nav-tab is-active" data-nav="quiz">Викторина месяца</button>
     <button class="nav-tab" data-nav="overall">Общий рейтинг</button>
     <button class="nav-tab" data-nav="archive">Архив</button>
   </div>
 
-  <!-- ===================== ВКЛАДКИ МЕСЯЦЕВ ===================== -->
   <div class="months-tabs" id="months-tabs"></div>
 
-  <!-- ===================== СТАРТ ===================== -->
+  <!-- СТАРТ -->
   <section class="screen is-active" data-screen="start">
     <div class="card card--accent">
       <h2 class="title">Проверь свои знания</h2>
       <p class="subtitle" id="quiz-subtitle">Ответь на вопросы месяца и займи место в рейтинге.</p>
 
-      <!-- NEW: Network Error Block -->
       <div class="network-error" id="network-error">
         <div class="network-error__title">Не удалось подключиться к сети</div>
         <div class="network-error__text">Проверьте соединение с интернетом или попробуйте обновить страницу.</div>
         <button class="btn" id="btn-retry-network" style="max-width: 240px; margin: 0 auto;">Повторить попытку</button>
       </div>
 
-      <!-- NEW: Already Completed Block -->
       <div class="already-completed" id="already-completed">
         <div class="already-completed__title">Вы уже прошли эту викторину!</div>
-        <div class="already-completed__text">Повторное прохождение в текущем месяце не засчитывается. Следите за своим местом в общем рейтинге!</div>
+        <div class="already-completed__text">Повторное прохождение в текущем месяце не засчитывается.</div>
+        <!-- NEW: Кнопки для просмотра рейтингов -->
+        <div class="actions" style="margin-top: 20px;">
+          <button class="btn" id="btn-completed-to-month">Рейтинг этого месяца</button>
+          <button class="btn btn--ghost" id="btn-completed-to-overall">Общий рейтинг</button>
+        </div>
       </div>
 
       <ul class="rules" id="rules-list">
-        <li class="rules__item">
-          <b class="rules__label">Шаг 1</b>
-          <span class="rules__text">Выберите свой никнейм из выпадающего списка</span>
-        </li>
-        <li class="rules__item">
-          <b class="rules__label">Шаг 2</b>
-          <span class="rules__text" id="rules-questions">Ответь на вопросы месяца</span>
-        </li>
-        <li class="rules__item">
-          <b class="rules__label">Шаг 3</b>
-          <span class="rules__text" id="rules-time">На каждый вопрос — 25 секунд</span>
-        </li>
-        <li class="rules__item">
-          <b class="rules__label">Важно</b>
-          <span class="rules__text">Засчитывается только первое прохождение</span>
-        </li>
+        <li class="rules__item"><b class="rules__label">Шаг 1</b><span class="rules__text">Выберите свой никнейм из списка</span></li>
+        <li class="rules__item"><b class="rules__label">Шаг 2</b><span class="rules__text" id="rules-questions">Ответьте на вопросы месяца</span></li>
+        <li class="rules__item"><b class="rules__label">Шаг 3</b><span class="rules__text" id="rules-time">На каждый вопрос — 25 секунд</span></li>
+        <li class="rules__item"><b class="rules__label">Важно</b><span class="rules__text">Засчитывается только первое прохождение</span></li>
       </ul>
 
-      <!-- NEW: Autocomplete Input -->
       <div class="autocomplete-wrapper" id="autocomplete-wrapper">
         <input class="field" id="player-name" placeholder="Введите ваш никнейм (мин. 2 символа)" autocomplete="off">
         <ul class="autocomplete-list" id="autocomplete-list"></ul>
@@ -1183,22 +695,20 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
       <div class="actions" id="start-actions">
         <button class="btn" id="btn-start">Начать викторину</button>
-        <!-- NEW: Resume Game Button -->
         <button class="btn btn--ghost" id="btn-resume" style="display: none;">Продолжить прерванную игру</button>
         <button class="btn btn--ghost" id="btn-month-leaderboard">Рейтинг месяца</button>
       </div>
     </div>
   </section>
 
-  <!-- ===================== ВОПРОС ===================== -->
+  <!-- ВОПРОС -->
   <section class="screen" data-screen="quiz">
     <div class="card card--flush">
       <div class="quiz-bar">
         <div class="quiz-bar__counter caps">Вопрос <span id="q-number">1</span> из <span id="q-total">10</span></div>
-
         <div class="timer" id="timer-box" aria-live="polite">
           <svg class="timer__ring" viewBox="0 0 72 72">
-            <circle class="timer__ring-bg"   cx="36" cy="36" r="32"></circle>
+            <circle class="timer__ring-bg" cx="36" cy="36" r="32"></circle>
             <circle class="timer__ring-fill" id="timer-ring" cx="36" cy="36" r="32"></circle>
           </svg>
           <div class="timer__inner">
@@ -1209,11 +719,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       </div>
 
       <div class="quiz-body">
-        <div class="toast" id="toast"></div>
         <p class="question" id="question-text">—</p>
         <div class="options" id="options" aria-label="Варианты ответа"></div>
         
-        <!-- NEW: Confirm Answer Button -->
         <div class="quiz-actions" id="quiz-actions">
           <button class="btn" id="btn-confirm-answer">Подтвердить ответ</button>
         </div>
@@ -1221,11 +729,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <p class="quiz-hint">Выберите один вариант и нажмите «Подтвердить ответ»</p>
       </div>
     </div>
-
     <div class="progress" id="progress" aria-hidden="true"></div>
   </section>
 
-  <!-- ===================== РЕЗУЛЬТАТ ===================== -->
+  <!-- РЕЗУЛЬТАТ -->
   <section class="screen" data-screen="result">
     <div class="stack">
       <div class="result">
@@ -1234,7 +741,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <div class="result__grid">
           <div class="acc">
             <svg viewBox="0 0 120 120">
-              <circle class="acc__bg"   cx="60" cy="60" r="52"></circle>
+              <circle class="acc__bg" cx="60" cy="60" r="52"></circle>
               <circle class="acc__fill" id="acc-fill" cx="60" cy="60" r="52"></circle>
             </svg>
             <div class="acc__center">
@@ -1258,6 +765,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           <div class="stat"><div class="stat__value" id="stat-time">0:00</div><div class="stat__label">время игры</div></div>
           <div class="stat"><div class="stat__value" id="stat-streak">0</div><div class="stat__label">лучшая серия</div></div>
         </div>
+
+        <!-- NEW: Сообщение про МТС Линк -->
+        <div class="result__mts-note">
+          Ваши ответы приняты. Правильные ответы разберём после завершения викторины в канале МТС Линк.
+        </div>
       </div>
 
       <div class="actions actions--flush">
@@ -1266,68 +778,53 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     </div>
   </section>
 
-  <!-- ===================== РЕЙТИНГ МЕСЯЦА ===================== -->
+  <!-- РЕЙТИНГ МЕСЯЦА -->
   <section class="screen" data-screen="leaderboard">
     <div class="card">
       <h2 class="title" id="leaderboard-title">Рейтинг месяца</h2>
       <p class="subtitle">Топ-3 на пьедестале. Все участники — в таблице. При равных очках побеждает скорость.</p>
-
       <div class="podium" id="podium"></div>
-
       <div class="board">
         <div class="board__row board__row--head">
-          <div>Место</div>
-          <div>Участник</div>
-          <div class="board__num">Верно</div>
-          <div class="board__num">Время</div>
+          <div>Место</div><div>Участник</div><div class="board__num">Верно</div><div class="board__num">Время</div>
         </div>
         <div id="board-rows"></div>
       </div>
-
       <div class="actions">
         <button class="btn btn--ghost" id="btn-back-from-leaderboard">Назад</button>
       </div>
     </div>
   </section>
 
-  <!-- ===================== ОБЩИЙ РЕЙТИНГ ===================== -->
+  <!-- ОБЩИЙ РЕЙТИНГ -->
   <section class="screen" data-screen="overall">
     <div class="card">
       <h2 class="title">Общий рейтинг</h2>
-      <p class="subtitle">Сумма очков за все месяцы. Участвуй каждый месяц, чтобы подняться выше!</p>
-
+      <p class="subtitle">Сумма очков за все месяцы. При равных очках выше тот, кто затратил меньше времени.</p>
       <div class="podium" id="overall-podium"></div>
-
       <div class="board">
         <div class="board__row board__row--head">
-          <div>Место</div>
-          <div>Участник</div>
-          <div class="board__num">Очки</div>
-          <div class="board__num">Игр</div>
+          <div>Место</div><div>Участник</div><div class="board__num">Очки</div><div class="board__num">Игр</div>
         </div>
         <div id="overall-rows"></div>
       </div>
-
       <div class="actions">
         <button class="btn btn--ghost" id="btn-back-from-overall">Назад</button>
       </div>
     </div>
   </section>
 
-  <!-- ===================== АРХИВ ===================== -->
+  <!-- АРХИВ -->
   <section class="screen" data-screen="archive">
     <div class="card">
       <h2 class="title">Архив викторин</h2>
       <p class="subtitle">Выбери месяц, чтобы посмотреть рейтинг.</p>
-
       <div class="archive-grid" id="archive-grid"></div>
-
       <div class="actions">
         <button class="btn btn--ghost" id="btn-back-from-archive">Назад</button>
       </div>
     </div>
   </section>
-
 </main>
 
 <script>
@@ -1339,11 +836,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   const TIMER_C = 2 * Math.PI * TIMER_RADIUS;
   const ACC_RADIUS = 52;
   const ACC_C = 2 * Math.PI * ACC_RADIUS;
-  const CACHE_DURATION = 1000 * 60 * 60 * 24; // 24 часа кэш
+  const CACHE_DURATION = 1000 * 60 * 60 * 24; // 24 часа
 
   const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwSs3bZO5rC1ioJJ4Gc5Eo2P0wRY-UsgM8sDCM3seFmAOUe5S7BeCqesjqhYlYsZaGzlg/exec';
 
-  // NEW: Список известных никнеймов для автодополнения
   const KNOWN_NICKNAMES = [
     "Ange1", "Меня заставили стать анонимом", "Веточка", "Ло", "Kagamine Len", 
     "Barabanda", "Юраатук", "Leeloo", "Endokarda", "НеВассерман", "Tigra", "Валери", 
@@ -1364,7 +860,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     passThreshold: 75,
     podiumSize: 3,
     answerLetters: ['А', 'Б', 'В', 'Г'],
-    // NEW: Обновленная регулярка для поддержки цифр, подчеркиваний и точек в никнеймах
     namePattern: /^[А-Яа-яЁёA-Za-z0-9_][А-Яа-яЁёA-Za-z0-9_\-.\s]{1,30}$/,
   };
 
@@ -1374,12 +869,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     { min: 50,  title: 'Хороший уровень', note: 'Половина месяца у тебя в кармане.' },
     { min: 0,   title: 'Будь внимательнее', note: 'В следующем месяце точно получится лучше!' },
   ]);
-
-  // UPDATE: Убраны сообщения о правильном/неправильном ответе
-  const TOASTS = Object.freeze({
-    accepted: 'Ответ принят! Правильные ответы обсудим после викторины в канале МТС Линк',
-    timeout: 'Время вышло! Ответы обсудим после викторины в канале МТС Линк',
-  });
 
   const state = {
     settings: null,
@@ -1394,13 +883,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     timeLeft: CONFIG.secondsPerQuestion,
     timerId: null,
     locked: false,
-    selected: null, // NEW: хранит индекс выбранного, но не подтвержденного ответа
+    selected: null,
     history: [],
     streak: 0,
     bestStreak: 0,
     answers: [],
-    toastId: null,
-    knownNames: [...KNOWN_NICKNAMES], // NEW: динамический список для автодополнения
+    knownNames: [...KNOWN_NICKNAMES],
   };
 
   const $ = (selector, scope = document) => scope.querySelector(selector);
@@ -1435,11 +923,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       timer: $('#timer-box'),
       timerRing: $('#timer-ring'),
       timerValue: $('#timer-value'),
-      toast: $('#toast'),
       question: $('#question-text'),
       options: $('#options'),
-      actions: $('#quiz-actions'), // NEW
-      confirmBtn: $('#btn-confirm-answer'), // NEW
+      actions: $('#quiz-actions'),
+      confirmBtn: $('#btn-confirm-answer'),
       progress: $('#progress'),
     },
     result: {
@@ -1502,44 +989,33 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   function openModal() { dom.modalOverlay.classList.add('is-open'); }
   function closeModal() { dom.modalOverlay.classList.remove('is-open'); }
 
-  // NEW: Функции кэширования
   function setCache(key, data) {
-    try {
-      localStorage.setItem(`eos_cache_${key}`, JSON.stringify({ data, ts: Date.now() }));
-    } catch(e) { console.warn('Cache save failed', e); }
+    try { localStorage.setItem(`eos_cache_${key}`, JSON.stringify({ data, ts: Date.now() })); } catch(e) {}
   }
-
   function getCache(key) {
     try {
       const item = localStorage.getItem(`eos_cache_${key}`);
       if (!item) return null;
       const parsed = JSON.parse(item);
-      if (Date.now() - parsed.ts > CACHE_DURATION) return null; // Истек
+      if (Date.now() - parsed.ts > CACHE_DURATION) return null;
       return parsed.data;
     } catch(e) { return null; }
   }
 
-  // NEW: Функции прогресса
   function getProgressKey() {
     return state.activeMonth ? `eos_progress_${state.activeMonth.name}_${state.activeMonth.year}` : null;
   }
-
   function saveProgress() {
     const key = getProgressKey();
     if (!key) return;
     try {
       localStorage.setItem(key, JSON.stringify({
-        player: state.player,
-        index: state.index,
-        score: state.score,
-        spentSeconds: state.spentSeconds,
-        history: state.history,
-        streak: state.streak,
-        bestStreak: state.bestStreak,
+        player: state.player, index: state.index, score: state.score,
+        spentSeconds: state.spentSeconds, history: state.history,
+        streak: state.streak, bestStreak: state.bestStreak,
       }));
-    } catch(e) { console.warn('Progress save failed', e); }
+    } catch(e) {}
   }
-
   function loadProgress() {
     const key = getProgressKey();
     if (!key) return null;
@@ -1548,18 +1024,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       return data ? JSON.parse(data) : null;
     } catch(e) { return null; }
   }
-
   function clearProgress() {
     const key = getProgressKey();
     if (key) localStorage.removeItem(key);
   }
-
-  // NEW: Проверка завершения
   function isCompleted() {
     const key = state.activeMonth ? `eos_completed_${state.activeMonth.name}_${state.activeMonth.year}` : null;
     return key ? localStorage.getItem(key) === 'true' : false;
   }
-
   function setCompleted() {
     const key = state.activeMonth ? `eos_completed_${state.activeMonth.name}_${state.activeMonth.year}` : null;
     if (key) localStorage.setItem(key, 'true');
@@ -1571,17 +1043,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       const response = await fetch(url);
       if (!response.ok) throw new Error('Network response was not ok');
       const data = await response.json();
-      // NEW: Кэшируем успешный ответ
       setCache(action + params, data);
       return data;
     } catch (error) {
-      console.error(`Ошибка загрузки (${action}):`, error);
-      // NEW: Возвращаем данные из кэша при ошибке сети
       const cached = getCache(action + params);
-      if (cached) {
-        console.log(`Используются кэшированные данные для: ${action}`);
-        return cached;
-      }
+      if (cached) return cached;
       return null;
     }
   }
@@ -1595,21 +1061,16 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         CONFIG.questionsPerGame = parseInt(state.settings['Вопросов в игре']) || 10;
         CONFIG.secondsPerQuestion = parseInt(state.settings['Секунд на вопрос']) || 25;
       }
-    } catch(e) { console.log('Настройки не загрузились'); }
+    } catch(e) {}
 
-    try {
-      state.months = await fetchFromSheets('months') || [];
-    } catch(e) { state.months = []; }
+    try { state.months = await fetchFromSheets('months') || []; } catch(e) { state.months = []; }
 
     state.activeMonth = state.months.find(m => m.status === 'Активен') || { name: 'Август', year: 2026, status: 'Активен' };
     state.nextMonth = state.months.find(m => m.status === 'Закрыт') || { name: 'Сентябрь', year: 2026, status: 'Закрыт' };
 
-    try {
-      state.questions = await fetchFromSheets('questions', `&month=${encodeURIComponent(state.activeMonth.name)}`) || [];
-    } catch(e) { state.questions = []; }
+    try { state.questions = await fetchFromSheets('questions', `&month=${encodeURIComponent(state.activeMonth.name)}`) || []; } catch(e) { state.questions = []; }
 
     if (state.questions.length === 0 && !getCache('questions&month=' + encodeURIComponent(state.activeMonth.name))) {
-      // NEW: Если нет ни сети, ни кэша
       dom.start.networkError.classList.add('is-visible');
       dom.start.autocompleteWrapper.style.display = 'none';
       dom.start.rulesList.style.display = 'none';
@@ -1631,7 +1092,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     checkResumeAndCompletion();
   }
 
-  // NEW: Проверка на продолжение или завершение
   function checkResumeAndCompletion() {
     if (isCompleted()) {
       dom.start.autocompleteWrapper.style.display = 'none';
@@ -1675,7 +1135,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     }
   }
 
-  // NEW: Логика автодополнения
   function setupAutocomplete() {
     const input = dom.start.name;
     const list = dom.start.autocompleteList;
@@ -1683,12 +1142,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     input.addEventListener('input', () => {
       const val = input.value.trim().toLowerCase();
       list.innerHTML = '';
-      if (val.length < 2) {
-        list.classList.remove('is-visible');
-        return;
-      }
+      if (val.length < 2) { list.classList.remove('is-visible'); return; }
 
-      // Фильтруем известные имена + добавляем уникальные из текущего рейтинга (если загрузились)
       const uniqueNames = [...new Set(state.knownNames)];
       const matches = uniqueNames.filter(name => name.toLowerCase().includes(val)).slice(0, 6);
 
@@ -1710,14 +1165,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       }
     });
 
-    input.addEventListener('blur', () => {
-      setTimeout(() => list.classList.remove('is-visible'), 150);
-    });
-
+    input.addEventListener('blur', () => setTimeout(() => list.classList.remove('is-visible'), 150));
     input.addEventListener('focus', () => {
-      if (input.value.trim().length >= 2) {
-        input.dispatchEvent(new Event('input'));
-      }
+      if (input.value.trim().length >= 2) input.dispatchEvent(new Event('input'));
     });
   }
 
@@ -1734,7 +1184,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         dom.start.name.focus();
         return;
       }
-      state.player = rawName; // Сохраняем как ввел пользователь (или выбрал)
+      state.player = rawName;
     } else {
       const progress = loadProgress();
       if (!progress) return;
@@ -1748,16 +1198,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     }
 
     if (!resume) {
-      state.index = 0;
-      state.score = 0;
-      state.spentSeconds = 0;
-      state.history = [];
-      state.streak = 0;
-      state.bestStreak = 0;
+      state.index = 0; state.score = 0; state.spentSeconds = 0;
+      state.history = []; state.streak = 0; state.bestStreak = 0;
     }
     
     state.answers = [];
-    clearProgress(); // Очищаем старый прогресс при новом старте, будем сохранять по ходу
+    clearProgress();
 
     buildProgressSegments();
     showScreen('quiz');
@@ -1776,7 +1222,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     }
 
     state.locked = false;
-    state.selected = null; // NEW: сброс выбора
+    state.selected = null;
 
     dom.quiz.number.textContent = state.index + 1;
     dom.quiz.question.textContent = question.text;
@@ -1786,9 +1232,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <span class="option__text">${escapeHtml(option)}</span>
       </button>`).join('');
 
-    // NEW: Скрываем кнопку подтверждения
     dom.quiz.actions.classList.remove('is-visible');
-
     paintProgress();
     startTimer();
   }
@@ -1801,21 +1245,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     $$('.progress__seg', dom.quiz.progress).forEach((seg, idx) => {
       seg.className = 'progress__seg';
       if (idx < state.history.length) {
-        seg.classList.add(state.history[idx] ? 'progress__seg--ok' : 'progress__seg--fail');
+        seg.classList.add('progress__seg--passed'); // NEW: Нейтральный цвет
       } else if (idx === state.index) {
         seg.classList.add('progress__seg--current');
       }
     });
-  }
-
-  function showToast(kind, text) {
-    const toast = dom.quiz.toast;
-    clearTimeout(state.toastId);
-    toast.className = `toast toast--${kind}`;
-    toast.textContent = text;
-    void toast.offsetWidth;
-    toast.classList.add('is-visible');
-    state.toastId = setTimeout(() => toast.classList.remove('is-visible'), 2500); // NEW: чуть дольше показываем
   }
 
   function setNameError(visible) {
@@ -1831,13 +1265,19 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     stopTimer();
     state.timeLeft = CONFIG.secondsPerQuestion;
     dom.quiz.timer.classList.remove('timer--warn');
-    updateTimerUi();
-    restartTimerRing();
+    dom.quiz.timerValue.textContent = state.timeLeft;
+    
+    const ring = dom.quiz.timerRing;
+    ring.style.transition = 'none';
+    ring.style.strokeDashoffset = '0';
+    void ring.getBoundingClientRect();
+    ring.style.transition = `stroke-dashoffset ${CONFIG.secondsPerQuestion}s linear`;
+    ring.style.strokeDashoffset = String(TIMER_C);
 
     state.timerId = setInterval(() => {
       state.timeLeft -= 1;
       state.spentSeconds += 1;
-      updateTimerUi();
+      dom.quiz.timerValue.textContent = state.timeLeft;
 
       if (state.timeLeft <= CONFIG.warningThreshold) dom.quiz.timer.classList.add('timer--warn');
       if (state.timeLeft <= 0) confirmAnswer(TIMEOUT);
@@ -1849,51 +1289,26 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       clearInterval(state.timerId);
       state.timerId = null;
     }
-    freezeTimerRing();
-  }
-
-  const updateTimerUi = () => { dom.quiz.timerValue.textContent = state.timeLeft; };
-
-  function restartTimerRing() {
-    const ring = dom.quiz.timerRing;
-    ring.style.transition = 'none';
-    ring.style.strokeDashoffset = '0';
-    void ring.getBoundingClientRect();
-    ring.style.transition = `stroke-dashoffset ${CONFIG.secondsPerQuestion}s linear`;
-    ring.style.strokeDashoffset = String(TIMER_C);
-  }
-
-  function freezeTimerRing() {
     const ring = dom.quiz.timerRing;
     ring.style.strokeDashoffset = getComputedStyle(ring).strokeDashoffset;
     ring.style.transition = 'none';
   }
 
-  // NEW: Обработка одиночного клика для выбора
   function handleOptionClick(index) {
     if (state.locked) return;
-
     state.selected = index;
     $$('.option', dom.quiz.options).forEach(btn => {
       const btnIdx = Number(btn.dataset.index);
-      if (btnIdx === index) {
-        btn.classList.add('option--selected');
-      } else {
-        btn.classList.remove('option--selected');
-      }
+      if (btnIdx === index) btn.classList.add('option--selected');
+      else btn.classList.remove('option--selected');
     });
-
-    // Показываем кнопку подтверждения
     dom.quiz.actions.classList.add('is-visible');
   }
 
-  // NEW: Подтверждение ответа по кнопке
   function confirmAnswer(chosenIndex) {
     if (state.locked) return;
-    // Если время вышло, chosenIndex будет TIMEOUT, иначе берем state.selected
     const finalChoice = chosenIndex === TIMEOUT ? TIMEOUT : state.selected;
-    
-    if (finalChoice === null && chosenIndex !== TIMEOUT) return; // Защита от двойного нажатия на кнопку без выбора
+    if (finalChoice === null && chosenIndex !== TIMEOUT) return;
 
     state.locked = true;
     stopTimer();
@@ -1911,18 +1326,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       timeSpent: timeSpent,
     });
 
-    // UPDATE: Убрана подсветка правильного/неправильного. Только выбранный и затемненные остальные.
     $$('.option', dom.quiz.options).forEach(btn => {
       const idx = Number(btn.dataset.index);
       btn.disabled = true;
-      if (idx === finalChoice) {
-        btn.classList.add('option--selected');
-      } else {
-        btn.classList.add('option--dim');
-      }
+      if (idx === finalChoice) btn.classList.add('option--selected');
+      else btn.classList.add('option--dim');
     });
     
-    // Скрываем кнопку подтверждения
     dom.quiz.actions.classList.remove('is-visible');
 
     if (isCorrect) {
@@ -1934,12 +1344,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     }
     state.history.push(isCorrect);
     paintProgress();
-    
-    // NEW: Сохраняем прогресс после каждого ответа
     saveProgress();
-
-    if (finalChoice === TIMEOUT) showToast('warn', TOASTS.timeout);
-    else showToast('ok', TOASTS.accepted);
 
     setTimeout(() => {
       state.index += 1;
@@ -1950,14 +1355,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
   function finishGame() {
     stopTimer();
-    clearProgress(); // NEW: Очищаем прогресс при успешном завершении
-    setCompleted();  // NEW: Ставим флаг завершения
+    clearProgress();
+    setCompleted();
 
     const total = state.questions.length;
-    if (total === 0) {
-      showScreen('start');
-      return;
-    }
+    if (total === 0) { showScreen('start'); return; }
 
     const accuracy = Math.round((state.score / total) * 100);
     const grade = GRADES.find(g => accuracy >= g.min) || GRADES[GRADES.length - 1];
@@ -1970,97 +1372,69 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
     animateNumber(dom.result.score, state.score);
     animateNumber(dom.result.accNum, accuracy, { duration: 1100, format: v => `${v}%` });
-    animateAccuracyRing(accuracy);
-
-    sendToGoogleSheets();
-    showScreen('result');
-    if (accuracy >= CONFIG.passThreshold) launchConfetti();
-  }
-
-  function animateAccuracyRing(accuracy) {
+    
     const ring = dom.result.accFill;
     ring.style.transition = 'none';
     ring.style.strokeDashoffset = String(ACC_C);
     void ring.getBoundingClientRect();
     ring.style.transition = 'stroke-dashoffset 1.2s var(--ease)';
     ring.style.strokeDashoffset = String(ACC_C * (1 - accuracy / 100));
+
+    sendToGoogleSheets();
+    showScreen('result');
+    if (accuracy >= CONFIG.passThreshold) launchConfetti();
   }
 
   function sendToGoogleSheets() {
     const resultData = {
-      action: 'submit',
-      id: Date.now(),
-      name: state.player,
-      month: state.activeMonth?.name || '',
-      score: state.score,
-      totalQuestions: state.questions.length,
-      timeSeconds: state.spentSeconds,
-      bestStreak: state.bestStreak,
-      answers: state.answers,
+      action: 'submit', id: Date.now(), name: state.player,
+      month: state.activeMonth?.name || '', score: state.score,
+      totalQuestions: state.questions.length, timeSeconds: state.spentSeconds,
+      bestStreak: state.bestStreak, answers: state.answers,
     };
-
     fetch(GOOGLE_SHEETS_URL, {
-      method: 'POST',
-      mode: 'no-cors',
+      method: 'POST', mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(resultData),
-    }).then(() => {
-      console.log('✅ Данные отправлены');
-    }).catch((error) => {
-      console.error('❌ Ошибка отправки:', error);
-    });
+    }).catch((error) => console.error('❌ Ошибка отправки:', error));
   }
 
   async function renderMonthLeaderboard() {
     setActiveNav('quiz');
     toggleQuizElements(false);
     showScreen('leaderboard');
+    dom.leaderboard.title.textContent = `Рейтинг: ${state.activeMonth?.name || ''}`;
+    const results = await fetchFromSheets('leaderboard', `&month=${encodeURIComponent(state.activeMonth?.name || '')}`) || [];
     
-    const monthName = state.activeMonth?.name || '';
-    dom.leaderboard.title.textContent = `Рейтинг: ${monthName}`;
-    
-    const results = await fetchFromSheets('leaderboard', `&month=${encodeURIComponent(monthName)}`) || [];
-    
-    // NEW: Обновляем список известных имен из рейтинга для будущего автодополнения
     if (results && results.length > 0) {
-      const namesFromBoard = results.map(r => r.name);
-      state.knownNames = [...new Set([...KNOWN_NICKNAMES, ...namesFromBoard])];
+      state.knownNames = [...new Set([...KNOWN_NICKNAMES, ...results.map(r => r.name)])];
     }
 
     dom.leaderboard.podium.innerHTML = buildPodiumHtml(results.slice(0, CONFIG.podiumSize));
-    
     const rest = results.slice(CONFIG.podiumSize);
-    dom.leaderboard.rows.innerHTML = rest.map((entry, i) =>
-      boardRowHtml(entry, CONFIG.podiumSize + i, entry.name === state.player)).join('');
+    dom.leaderboard.rows.innerHTML = rest.map((entry, i) => boardRowHtml(entry, CONFIG.podiumSize + i, entry.name === state.player)).join('');
   }
 
   async function renderOverallLeaderboard() {
     setActiveNav('overall');
     toggleQuizElements(false);
     showScreen('overall');
-    
     const results = await fetchFromSheets('overall') || [];
     
-    // NEW: Обновляем список известных имен
     if (results && results.length > 0) {
-      const namesFromBoard = results.map(r => r.name);
-      state.knownNames = [...new Set([...KNOWN_NICKNAMES, ...namesFromBoard])];
+      state.knownNames = [...new Set([...KNOWN_NICKNAMES, ...results.map(r => r.name)])];
     }
 
     dom.overall.podium.innerHTML = buildPodiumHtml(results.slice(0, CONFIG.podiumSize));
-    
     const rest = results.slice(CONFIG.podiumSize);
-    dom.overall.rows.innerHTML = rest.map((entry, i) =>
-      overallRowHtml(entry, CONFIG.podiumSize + i, entry.name === state.player)).join('');
+    dom.overall.rows.innerHTML = rest.map((entry, i) => overallRowHtml(entry, CONFIG.podiumSize + i, entry.name === state.player)).join('');
   }
 
   async function renderArchive() {
     setActiveNav('archive');
     toggleQuizElements(false);
     showScreen('archive');
-    
     const months = await fetchFromSheets('archive') || [];
-    
     dom.archive.grid.innerHTML = months.map(m => `
       <div class="archive-month" data-month="${escapeHtml(m.name)}">
         <div class="archive-month__name">${escapeHtml(m.name)}</div>
@@ -2074,8 +1448,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         const results = await fetchFromSheets('leaderboard', `&month=${encodeURIComponent(month)}`) || [];
         dom.leaderboard.podium.innerHTML = buildPodiumHtml(results.slice(0, CONFIG.podiumSize));
         const rest = results.slice(CONFIG.podiumSize);
-        dom.leaderboard.rows.innerHTML = rest.map((entry, i) =>
-          boardRowHtml(entry, CONFIG.podiumSize + i, entry.name === state.player)).join('');
+        dom.leaderboard.rows.innerHTML = rest.map((entry, i) => boardRowHtml(entry, CONFIG.podiumSize + i, entry.name === state.player)).join('');
         toggleQuizElements(false);
         showScreen('leaderboard');
       });
@@ -2107,29 +1480,26 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   }
 
   function boardRowHtml(entry, place, mine) {
-    return `
-      <div class="board__row${mine ? ' board__row--mine' : ''}">
-        <div class="board__place">${place + 1}</div>
-        <div class="board__name">${escapeHtml(entry.name)}${mine ? '<span class="board__tag">вы</span>' : ''}</div>
-        <div class="board__num">${entry.score}</div>
-        <div class="board__num">${formatTime(entry.seconds)}</div>
-      </div>`;
+    return `<div class="board__row${mine ? ' board__row--mine' : ''}">
+      <div class="board__place">${place + 1}</div>
+      <div class="board__name">${escapeHtml(entry.name)}${mine ? '<span class="board__tag">вы</span>' : ''}</div>
+      <div class="board__num">${entry.score}</div>
+      <div class="board__num">${formatTime(entry.seconds)}</div>
+    </div>`;
   }
 
   function overallRowHtml(entry, place, mine) {
-    return `
-      <div class="board__row${mine ? ' board__row--mine' : ''}">
-        <div class="board__place">${place + 1}</div>
-        <div class="board__name">${escapeHtml(entry.name)}${mine ? '<span class="board__tag">вы</span>' : ''}</div>
-        <div class="board__num">${entry.totalScore}</div>
-        <div class="board__num">${entry.participations}</div>
-      </div>`;
+    return `<div class="board__row${mine ? ' board__row--mine' : ''}">
+      <div class="board__place">${place + 1}</div>
+      <div class="board__name">${escapeHtml(entry.name)}${mine ? '<span class="board__tag">вы</span>' : ''}</div>
+      <div class="board__num">${entry.totalScore}</div>
+      <div class="board__num">${entry.participations}</div>
+    </div>`;
   }
 
   function launchConfetti(count = 90) {
     const colors = ['#E01B24', '#E7C69A', '#FFFFFF', '#A5121B'];
     const fragment = document.createDocumentFragment();
-
     Array.from({ length: count }, (_, i) => {
       const piece = document.createElement('div');
       piece.className = 'confetti';
@@ -2139,7 +1509,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       if (i % 3 === 0) piece.style.borderRadius = '50%';
       fragment.appendChild(piece);
     });
-
     document.body.appendChild(fragment);
     setTimeout(() => $$('.confetti').forEach(p => p.remove()), 4600);
   }
@@ -2147,75 +1516,41 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   function bindEvents() {
     dom.helpBtn.addEventListener('click', openModal);
     dom.modalClose.addEventListener('click', closeModal);
-    dom.modalOverlay.addEventListener('click', (e) => {
-      if (e.target === dom.modalOverlay) closeModal();
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeModal();
-    });
+    dom.modalOverlay.addEventListener('click', (e) => { if (e.target === dom.modalOverlay) closeModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
     dom.navTabs.forEach(tab => {
       tab.addEventListener('click', () => {
         const nav = tab.dataset.nav;
-        if (nav === 'quiz') {
-          setActiveNav('quiz');
-          toggleQuizElements(true);
-          showScreen('start');
-          checkResumeAndCompletion(); // NEW: перепроверяем статус при возврате
-        } else if (nav === 'overall') {
-          renderOverallLeaderboard();
-        } else if (nav === 'archive') {
-          renderArchive();
-        }
+        if (nav === 'quiz') { setActiveNav('quiz'); toggleQuizElements(true); showScreen('start'); checkResumeAndCompletion(); }
+        else if (nav === 'overall') renderOverallLeaderboard();
+        else if (nav === 'archive') renderArchive();
       });
     });
 
     dom.start.start.addEventListener('click', () => startGame(false));
-    dom.start.resume.addEventListener('click', () => startGame(true)); // NEW: кнопка продолжения
+    dom.start.resume.addEventListener('click', () => startGame(true));
     dom.start.monthLeaderboard.addEventListener('click', renderMonthLeaderboard);
     dom.start.name.addEventListener('input', () => setNameError(false));
-    dom.start.name.addEventListener('keydown', e => {
-      if (e.key === 'Enter') startGame(false);
-    });
+    dom.start.name.addEventListener('keydown', e => { if (e.key === 'Enter') startGame(false); });
 
-    // NEW: Обработчики для вариантов ответа и кнопки подтверждения
     dom.quiz.options.addEventListener('click', e => {
       const btn = e.target.closest('.option');
       if (btn) handleOptionClick(Number(btn.dataset.index));
     });
-    
-    dom.quiz.confirmBtn.addEventListener('click', () => {
-      if (state.selected !== null) {
-        confirmAnswer(state.selected);
-      }
-    });
+    dom.quiz.confirmBtn.addEventListener('click', () => { if (state.selected !== null) confirmAnswer(state.selected); });
 
     dom.result.toBoard.addEventListener('click', renderMonthLeaderboard);
 
-    dom.leaderboard.back.addEventListener('click', () => {
-      setActiveNav('quiz');
-      toggleQuizElements(true);
-      showScreen('start');
-      checkResumeAndCompletion();
-    });
-    dom.overall.back.addEventListener('click', () => {
-      setActiveNav('quiz');
-      toggleQuizElements(true);
-      showScreen('start');
-      checkResumeAndCompletion();
-    });
-    dom.archive.back.addEventListener('click', () => {
-      setActiveNav('quiz');
-      toggleQuizElements(true);
-      showScreen('start');
-      checkResumeAndCompletion();
-    });
+    dom.leaderboard.back.addEventListener('click', () => { setActiveNav('quiz'); toggleQuizElements(true); showScreen('start'); checkResumeAndCompletion(); });
+    dom.overall.back.addEventListener('click', () => { setActiveNav('quiz'); toggleQuizElements(true); showScreen('start'); checkResumeAndCompletion(); });
+    dom.archive.back.addEventListener('click', () => { setActiveNav('quiz'); toggleQuizElements(true); showScreen('start'); checkResumeAndCompletion(); });
     
-    // NEW: Кнопка повторной попытки при ошибке сети
-    $('#btn-retry-network').addEventListener('click', () => {
-      dom.start.networkError.classList.remove('is-visible');
-      initApp();
-    });
+    // NEW: Кнопки из блока "Уже прошел"
+    $('#btn-completed-to-month').addEventListener('click', renderMonthLeaderboard);
+    $('#btn-completed-to-overall').addEventListener('click', renderOverallLeaderboard);
+    
+    $('#btn-retry-network').addEventListener('click', () => { dom.start.networkError.classList.remove('is-visible'); initApp(); });
   }
 
   function init() {
@@ -2224,7 +1559,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     dom.result.accFill.style.strokeDasharray = String(ACC_C);
     dom.result.accFill.style.strokeDashoffset = String(ACC_C);
 
-    setupAutocomplete(); // NEW: инициализация автодополнения
+    setupAutocomplete();
     bindEvents();
     initApp();
   }
